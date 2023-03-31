@@ -3,11 +3,10 @@ package bootstrap
 import (
 	"errors"
 	"fmt"
-	"log"
-	"time"
-
 	"github.com/tidwall/gjson"
 	"github.com/webrtc-demo-go/config"
+	"log"
+	"time"
 )
 
 // InitToken 根据授权码获取token
@@ -47,7 +46,7 @@ func InitToken() (err error) {
 func refreshToken() (err error) {
 	url := fmt.Sprintf("https://%s/v1.0/token/%s", config.App.OpenAPIURL, config.App.RefreshToken)
 
-	body, err := RestToken("GET", url, nil)
+	body, err := Rest("GET", url, nil)
 	if err != nil {
 		log.Printf("GET token fail: %s, body: %s", err.Error(), string((body)))
 
